@@ -8,21 +8,23 @@ then
     mkdir -p "$1/day$DAYNAME"
     echo '#include "../AoCHelper/AoCHelper.h"
 #include <vector>
+#include <string>
+#include <iostream>
 
-void puzzle_one(std::vector<std::string> input)
+void puzzle_one(const std::vector<std::string>& input)
 {
     int answer{};
-    for (std::string row : input)
+    for (auto row : input)
     {
 
     }
     std::cout << "Puzzle one: " << answer << std::endl;
 }
 
-void puzzle_two(std::vector<std::string> input)
+void puzzle_two(const std::vector<std::string>& input)
 {
     int answer{};
-    for (std::string row : input)
+    for (auto row : input)
     {
 
     }
@@ -32,7 +34,7 @@ void puzzle_two(std::vector<std::string> input)
 int main()
 {
     std::vector<std::string> exampleInput{"", "", "", "" ,""};
-    AoCHelper a1{"2022", "'$DAYNAME'"};
+    AoCHelper a1{"2023", "'$DAYNAME'"};
     std::vector<std::string> result = a1.get_input();
     puzzle_one(result);
     puzzle_two(result);

@@ -30,7 +30,7 @@ token.txt
 # Compiled Static libraries
 *.lai
 *.la
-*.a
+# *.a
 *.lib
 
 # Executables
@@ -53,4 +53,6 @@ _deps
 *_tests.cmake
 AoCHelperTests
 
-build/
+build/.clangd/
+build/.cmake/
+*.ninja*

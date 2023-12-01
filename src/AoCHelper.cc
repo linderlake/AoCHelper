@@ -1,16 +1,18 @@
 #include "AoCHelper.h"
 
-AoCHelper::AoCHelper(std::string year, std::string day) {
-  current_year = year;
-  current_day = day;
-};
+AoCHelper::AoCHelper(std::string year, std::string day)
+    : current_year{year}, current_day{day} {};
 
 std::string AoCHelper::get_token() {
-  std::string token_path = "./../AoCHelper/token.txt";
+  auto env_token_path = std::getenv("TOKENPATH");
+  std::string token_path = env_token_path ? env_token_path : "~/token.txt";
+
   if (!file_exists(token_path)) {
     std::cout << "No token.txt at " << token_path
-              << " found. Please create a file called token.txt in the "
-                 "AoCHelper folder and paste your token in there."
+              << " found. Please create a file with your token, called "
+                 "token.txt in the "
+                 "AoCHelper folder or set your token in the TOKENPATH env "
+                 "variable. (eg. export TOKENPATH=/home/user/token.txt)"
               << std::endl;
     exit(1);
   }
@@ -38,16 +40,16 @@ std::vector<std::string> AoCHelper::download_input() {
     }
 
     return result;
-  } catch (curlpp::LogicError &e) {
+  } catch (curlpp::LogicError& e) {
     std::cout << e.what() << std::endl;
     exit(1);
-  } catch (curlpp::RuntimeError &e) {
+  } catch (curlpp::RuntimeError& e) {
     std::cout << e.what() << std::endl;
     exit(1);
   }
 }
 
-bool AoCHelper::file_exists(const std::string &name) {
+bool AoCHelper::file_exists(const std::string& name) {
   struct stat buffer;
   return (stat(name.c_str(), &buffer) == 0);
 }
@@ -60,7 +62,7 @@ std::vector<std::string> AoCHelper::get_input() {
     std::ostream_iterator<std::string> output_iterator(output_file, "\n");
     std::copy(result.begin(), result.end(), output_iterator);
     return result;
-  } else  // read from file
+  } else // read from file
   {
     std::ifstream input_text{file_name};
     std::vector<std::string> result{};
