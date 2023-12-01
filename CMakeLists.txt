@@ -24,7 +24,7 @@ find_package(GTest CONFIG REQUIRED)
 find_package(unofficial-curlpp CONFIG REQUIRED)
 
 # add the library
-add_library(AoCHelper AoCHelper.h AoCHelper.cc helper_functions.h helper_functions.cc)
+add_library(AoCHelper src/AoCHelper.h src/AoCHelper.cc src/helper_functions.h src/helper_functions.cc)
 
 # link the libraries
 target_link_libraries(AoCHelper PRIVATE unofficial::curlpp::curlpp)
@@ -33,4 +33,4 @@ target_link_libraries(AoCHelper PRIVATE unofficial::curlpp::curlpp)
 enable_testing()
 
 # add a subdirectory for the tests
-add_subdirectory(tests)
+add_subdirectory(src/tests)
