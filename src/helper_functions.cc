@@ -6,7 +6,9 @@ std::vector<std::string> split(const std::string& s, char delimiter) {
   std::string token;
   std::istringstream tokenStream(s);
   while (std::getline(tokenStream, token, delimiter)) {
-    tokens.push_back(token);
+    if (!token.empty()) {
+      tokens.push_back(token);
+    }
   }
   return tokens;
 }
